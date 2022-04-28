@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="main.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Form Validation</title>
+  </head>
+
+  <body>
+    <h2>sign up</h2>
+
+    <form action="#" id="form">
+      <label for="email">
+        Email
+        <input type="email" name="email" id="email" required/>
+      </label>
+      <label for="country">
+        Country
+        <input type="text" name="country" id="country"/>
+      </label>
+      <label for="zip">
+        Zip Code
+        <input type="text" name="zip" id="zip" pattern="\d{5,5}(-\d{4,4})?" required/>
+      </label>
+      <label for="password">
+        Password
+        <input type="password" name="password" id="password" required/>
+      </label>
+      <label for="passwordConfirm">
+        Confirm Password
+        <input type="password" name="passwordConfirm" id="passwordConfirm" required/>
+      </label>
+      <input type="submit" value="submit" />
+    </form>
+  </body>
+</html>

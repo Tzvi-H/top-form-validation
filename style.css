@@ -1,0 +1,37 @@
+html {
+  box-sizing: border-box;
+}
+
+*::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+label {
+  display: grid;
+}
+
+input {
+  width: 150px;
+  padding: 4px;
+  outline: none;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  margin-top: 8px;
+}
+
+input:invalid {
+  border: 2px dashed red;
+}
+
+input:valid {
+  border: 2px solid black;
+}
