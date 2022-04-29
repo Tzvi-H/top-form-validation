@@ -6,51 +6,53 @@ const submitForm = (event) => {
 
 form.addEventListener("submit", submitForm);
 
-email.addEventListener("input", function (event) {
-  if (!email.validity.valid) {
-    email.setCustomValidity("I am expecting an e-mail address!");
-    email.reportValidity();
-  } else {
-    email.setCustomValidity("");
-  }
-});
+const addInputValidator = (input, condition, message) => {
+  input.addEventListener("input", (e) => {
+    if (!condition(input)) {
+      input.setCustomValidity(message);
+      input.reportValidity();
+      input.classList.remove("valid");
+      input.classList.add("invalid");
+    } else {
+      input.setCustomValidity("");
+      input.classList.remove("invalid");
+      input.classList.add("valid");
+    }
+  });
+};
 
-country.addEventListener("input", function (event) {
-  if (country.value.length < 3) {
-    country.setCustomValidity(
-      "I am expecting the country to have minimum 2 letters"
-    );
-    country.reportValidity();
-  } else {
-    country.setCustomValidity("");
-  }
-});
+addInputValidator(
+  email,
+  () => email.checkValidity(),
+  "I am expecting an e-mail address!"
+);
+addInputValidator(
+  country,
+  () => country.value.length > 1,
+  "I am expecting the country to have minimum 2 letters"
+);
+addInputValidator(
+  zip,
+  () => zip.value.length > 4,
+  "I am expecting the zip to have minimum 5 numbers"
+);
+addInputValidator(
+  password,
+  () => password.value.length > 2,
+  "I am expecting the password to have minimum 3 characters"
+);
+addInputValidator(
+  passwordConfirm,
+  () => passwordConfirm.value === password.value,
+  "passwords don't match"
+);
 
-zip.addEventListener("input", function (event) {
-  if (zip.value.length < 5) {
-    zip.setCustomValidity("I am expecting the zip to have minimum 5 numbers");
-    zip.reportValidity();
+password.addEventListener('input', () => {
+  if (password.value === passwordConfirm.value) {
+    passwordConfirm.classList.remove("invalid");
+    passwordConfirm.classList.add("valid");
   } else {
-    zip.setCustomValidity("");
+    passwordConfirm.classList.remove("valid");
+    passwordConfirm.classList.add("invalid");
   }
-});
-
-password.addEventListener("input", function (event) {
-  if (password.value.length < 3) {
-    password.setCustomValidity(
-      "I am expecting the password to have minimum 3 characters"
-    );
-    password.reportValidity();
-  } else {
-    password.setCustomValidity("");
-  }
-});
-
-passwordConfirm.addEventListener("input", function (event) {
-  if (passwordConfirm.value !== password.value) {
-    passwordConfirm.setCustomValidity("passwords don't match");
-    passwordConfirm.reportValidity();
-  } else {
-    passwordConfirm.setCustomValidity("");
-  }
-});
+})
