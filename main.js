@@ -9,12 +9,12 @@ form.addEventListener("submit", submitForm);
 const addInputValidator = (input, condition, message) => {
   input.addEventListener("input", (e) => {
     if (!condition(input)) {
-      input.setCustomValidity(message);
-      input.reportValidity();
+      // input.setCustomValidity(message);
+      // input.reportValidity();
       input.classList.remove("valid");
       input.classList.add("invalid");
     } else {
-      input.setCustomValidity("");
+      // input.setCustomValidity("");
       input.classList.remove("invalid");
       input.classList.add("valid");
     }
